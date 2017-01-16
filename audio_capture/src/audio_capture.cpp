@@ -159,7 +159,7 @@ namespace audio_transport
         exit(code);
       }
 
-      void publish( const audio_common_msgs::AudioData &msg )
+      void publish( const audio_common_msgs::StampedAudioData &msg )
       {
         _pub.publish(msg);
       }
