@@ -37,7 +37,7 @@ namespace audio_transport
         std::string device;
         ros::param::param<std::string>("~device", device, "");
 
-        _pub = _nh.advertise<audio_common_msgs::AudioData>("audio", 10, true);
+        _pub = _nh.advertise<audio_common_msgs::StampedAudioData>("audio", 10, true);
 
         _loop = g_main_loop_new(NULL, false);
         _pipeline = gst_pipeline_new("ros_pipeline");
@@ -174,12 +174,13 @@ namespace audio_transport
 
         GstBuffer *buffer = gst_sample_get_buffer(sample);
 
-        audio_common_msgs::AudioData msg;
+        audio_common_msgs::StampedAudioData msg;
         gst_buffer_map(buffer, &map, GST_MAP_READ);
         msg.data.resize( map.size );
 
         memcpy( &msg.data[0], map.data, map.size );
 
+        msg.header.stamp = ros::Time::now()
         server->publish(msg);
 
         return GST_FLOW_OK;
