@@ -5,7 +5,7 @@
 
 #include <ros/ros.h>
 
-#include "audio_common_msgs/AudioData.h"
+#include <audio_common_msgs/StampedAudioData.h>
 
 namespace audio_transport
 {
