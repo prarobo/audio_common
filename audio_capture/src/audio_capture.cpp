@@ -180,7 +180,7 @@ namespace audio_transport
 
         memcpy( &msg.data[0], map.data, map.size );
 
-        msg.header.stamp = ros::Time::now()
+        msg.header.stamp = ros::Time::now();
         server->publish(msg);
 
         return GST_FLOW_OK;
