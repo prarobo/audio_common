@@ -3,7 +3,7 @@
 #include <ros/ros.h>
 #include <boost/thread.hpp>
 
-#include "audio_common_msgs/AudioData.h"
+#include "audio_common_msgs/StampedAudioData.h"
 
 namespace audio_transport
 {
@@ -68,7 +68,7 @@ namespace audio_transport
 
     private:
 
-      void onAudio(const audio_common_msgs::AudioDataConstPtr &msg)
+      void onAudio(const audio_common_msgs::StampedAudioDataConstPtr &msg)
       {
         if(_paused)
         {
